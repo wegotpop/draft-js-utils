@@ -1,6 +1,6 @@
 {
   "name": "@wegotpop/draft-js-export-html",
-  "version": "1.3.4",
+  "version": "1.3.5",
   "description": "DraftJS: Export ContentState to HTML",
   "main": "lib/main.js",
   "typings": "typings/index.d.ts",
@@ -10,7 +10,7 @@
     "watch": "babel src --watch --out-dir lib --ignore \"_*\""
   },
   "dependencies": {
-    "@wegotpop/draft-js-utils": "^1.3.4"
+    "@wegotpop/draft-js-utils": "^1.3.5"
   },
   "peerDependencies": {
     "draft-js": ">=0.10.0",
