@@ -1,5 +1,5 @@
 {
-  "name": "draft-js-import-html",
+  "name": "@wegotpop/draft-js-import-html",
   "version": "1.3.3",
   "description": "DraftJS: Import HTML to ContentState",
   "main": "lib/main.js",
@@ -10,7 +10,7 @@
     "watch": "babel src --watch --out-dir lib --ignore \"_*\""
   },
   "dependencies": {
-    "draft-js-import-element": "^1.3.3"
+    "@wegotpop/draft-js-import-element": "^1.3.3"
   },
   "peerDependencies": {
     "draft-js": ">=0.10.0",

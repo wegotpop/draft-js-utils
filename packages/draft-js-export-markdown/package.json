@@ -1,5 +1,5 @@
 {
-  "name": "draft-js-export-markdown",
+  "name": "@wegotpop/draft-js-export-markdown",
   "version": "1.3.3",
   "description": "DraftJS: Export ContentState to Markdown",
   "main": "lib/main.js",
@@ -9,7 +9,7 @@
     "watch": "babel src --watch --out-dir lib --ignore \"_*\""
   },
   "dependencies": {
-    "draft-js-utils": "^1.3.3"
+    "@wegotpop/draft-js-utils": "^1.3.3"
   },
   "peerDependencies": {
     "draft-js": ">=0.10.0",
