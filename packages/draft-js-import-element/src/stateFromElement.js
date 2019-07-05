@@ -4,7 +4,7 @@ import replaceTextWithMeta from './lib/replaceTextWithMeta';
 import {CharacterMetadata, ContentBlock, ContentState, genKey} from 'draft-js';
 import {List, Map, OrderedSet, Repeat, Seq} from 'immutable';
 import {BLOCK_TYPE, ENTITY_TYPE, INLINE_STYLE} from '@wegotpop/draft-js-utils';
-import {NODE_TYPE_ELEMENT, NODE_TYPE_TEXT} from 'synthetic-dom';
+import {NODE_TYPE_ELEMENT, NODE_TYPE_TEXT} from '@wegotpop/synthetic-dom';
 import {
   INLINE_ELEMENTS,
   SPECIAL_ELEMENTS,
@@ -16,7 +16,7 @@ import type {Set, IndexedSeq} from 'immutable';
 import type {
   Node as SyntheticNode,
   ElementNode as SyntheticElement,
-} from 'synthetic-dom';
+} from '@wegotpop/synthetic-dom';
 
 type DOMNode = SyntheticNode | Node;
 type DOMElement = SyntheticElement | Element;
@@ -26,8 +26,8 @@ type Style = string;
 type StyleSet = Set<Style>;
 
 type TextFragment = {
-  text: string;
-  characterMeta: CharacterMetaSeq;
+  text: string,
+  characterMeta: CharacterMetaSeq,
 };
 
 type BlockData = {[key: string]: mixed};
@@ -36,53 +36,55 @@ type BlockData = {[key: string]: mixed};
 //   1) to keep data about the block (textFragments, type)
 //   2) to act as some context for storing parser state as we parse its contents
 type ParsedBlock = {
-  tagName: string;
-  textFragments: Array<TextFragment>;
-  type: string;
+  tagName: string,
+  textFragments: Array<TextFragment>,
+  type: string,
   // A stack in which the last item represents the styles that will apply
   // to any text node descendants.
-  styleStack: Array<StyleSet>;
-  entityStack: Array<?Entity>;
-  depth: number;
-  data: ?BlockData;
+  styleStack: Array<StyleSet>,
+  entityStack: Array<?Entity>,
+  depth: number,
+  data: ?BlockData,
 };
 
 export type ElementStyles = {[tagName: string]: Style};
 
 type PartialBlock = {
-  type?: string;
-  data?: BlockData;
+  type?: string,
+  data?: BlockData,
 };
 
-export type CustomBlockFn = (
-  element: DOMElement,
-) => ?PartialBlock;
+export type CustomBlockFn = (element: DOMElement) => ?PartialBlock;
 
 type EntityMutability = 'IMMUTABLE' | 'MUTABLE' | 'SEGMENTED';
 
 type CustomStyle = {
-  type: 'STYLE';
-  style: Style;
+  type: 'STYLE',
+  style: Style,
 };
 
 type CustomEntity = {
-  type: 'ENTITY';
-  entityKey: string;
+  type: 'ENTITY',
+  entityKey: string,
 };
 
 export type CustomInlineFn = (
   element: DOMElement,
   creators: {
-    Style: (style: string) => CustomStyle;
-    Entity: (type: string, data: DataMap<mixed>, mutability?: EntityMutability) => CustomEntity;
-  }
+    Style: (style: string) => CustomStyle,
+    Entity: (
+      type: string,
+      data: DataMap<mixed>,
+      mutability?: EntityMutability,
+    ) => CustomEntity,
+  },
 ) => ?(CustomStyle | CustomEntity);
 
 type Options = {
-  elementStyles?: ElementStyles;
-  blockTypes?: {[key: string]: string};
-  customBlockFn?: CustomBlockFn;
-  customInlineFn?: CustomInlineFn;
+  elementStyles?: ElementStyles,
+  blockTypes?: {[key: string]: string},
+  customBlockFn?: CustomBlockFn,
+  customInlineFn?: CustomInlineFn,
 };
 type DataMap<T> = {[key: string]: T};
 
@@ -168,7 +170,11 @@ class ContentGenerator {
   // to return a Style() or Entity().
   inlineCreators = {
     Style: (style: Style) => ({type: 'STYLE', style}),
-    Entity: (type: string, data: DataMap<mixed>, mutability: EntityMutability = 'MUTABLE') => ({
+    Entity: (
+      type: string,
+      data: DataMap<mixed>,
+      mutability: EntityMutability = 'MUTABLE',
+    ) => ({
       type: 'ENTITY',
       entityKey: this.createEntity(type, toStringMap(data), mutability),
     }),
@@ -343,11 +349,15 @@ class ContentGenerator {
     let style = block.styleStack.slice(-1)[0];
     let entityKey = block.entityStack.slice(-1)[0];
     let {customInlineFn} = this.options;
-    let customInline = customInlineFn ? customInlineFn(element, this.inlineCreators) : null;
+    let customInline = customInlineFn
+      ? customInlineFn(element, this.inlineCreators)
+      : null;
     if (customInline != null) {
       switch (customInline.type) {
         case 'STYLE': {
-          [].concat(customInline.style).forEach(customStyle => style = style.add(customStyle));
+          []
+            .concat(customInline.style)
+            .forEach((customStyle) => (style = style.add(customStyle)));
           break;
         }
         case 'ENTITY': {
@@ -359,7 +369,8 @@ class ContentGenerator {
       style = addStyleFromTagName(style, tagName, this.options.elementStyles);
       if (ElementToEntity.hasOwnProperty(tagName)) {
         // If the to-entity function returns nothing, use the existing entity.
-        entityKey = ElementToEntity[tagName](this, tagName, element) || entityKey;
+        entityKey =
+          ElementToEntity[tagName](this, tagName, element) || entityKey;
       }
     }
     block.styleStack.push(style);
@@ -416,7 +427,11 @@ class ContentGenerator {
     }
   }
 
-  createEntity(type: string, data: DataMap<string>, mutability: EntityMutability = 'MUTABLE') {
+  createEntity(
+    type: string,
+    data: DataMap<string>,
+    mutability: EntityMutability = 'MUTABLE',
+  ) {
     this.contentStateForEntities = this.contentStateForEntities.createEntity(
       type,
       mutability,
