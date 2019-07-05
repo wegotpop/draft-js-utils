@@ -3,7 +3,7 @@
 import replaceTextWithMeta from './lib/replaceTextWithMeta';
 import {CharacterMetadata, ContentBlock, ContentState, genKey} from 'draft-js';
 import {List, Map, OrderedSet, Repeat, Seq} from 'immutable';
-import {BLOCK_TYPE, ENTITY_TYPE, INLINE_STYLE} from 'draft-js-utils';
+import {BLOCK_TYPE, ENTITY_TYPE, INLINE_STYLE} from '@wegotpop/draft-js-utils';
 import {NODE_TYPE_ELEMENT, NODE_TYPE_TEXT} from 'synthetic-dom';
 import {
   INLINE_ELEMENTS,

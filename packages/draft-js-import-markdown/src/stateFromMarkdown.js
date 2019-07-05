@@ -1,10 +1,10 @@
 // @flow
 
 import MarkdownParser from './MarkdownParser';
-import {stateFromElement} from 'draft-js-import-element';
+import {stateFromElement} from '@wegotpop/draft-js-import-element';
 
 import type {ContentState} from 'draft-js';
-import type {ElementStyles, CustomBlockFn, CustomInlineFn} from 'draft-js-import-element';
+import type {ElementStyles, CustomBlockFn, CustomInlineFn} from '@wegotpop/draft-js-import-element';
 
 type Options = {
   elementStyles?: ElementStyles;

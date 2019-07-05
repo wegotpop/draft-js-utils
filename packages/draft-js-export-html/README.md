@@ -11,7 +11,7 @@ It was extracted from [React-RTE](https://react-rte.org) and placed into a separ
 ## How to Use
 
 ```javascript
-import {stateToHTML} from 'draft-js-export-html';
+import {stateToHTML} from '@wegotpop/draft-js-export-html';
 let html = stateToHTML(contentState);
 ```
 

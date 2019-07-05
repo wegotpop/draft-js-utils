@@ -10,7 +10,7 @@ It was extracted from [React-RTE](https://react-rte.org) and placed into a separ
 
 ## How to Use
 
-    import {stateFromMarkdown} from 'draft-js-import-markdown';
+    import {stateFromMarkdown} from '@wegotpop/draft-js-import-markdown';
     let contentState = stateFromMarkdown(markdown);
 
 This project is still under development. If you want to help out, please open an issue to discuss or join us on [Slack](https://draftjs.slack.com/).
