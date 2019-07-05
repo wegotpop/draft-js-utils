@@ -10,7 +10,7 @@ It was extracted from [React-RTE](https://react-rte.org) and placed into a separ
 
 ## How to Use
 
-    import {stateFromHTML} from 'draft-js-import-html';
+    import {stateFromHTML} from '@wegotpop/draft-js-import-html';
     let contentState = stateFromHTML(html);
 
 This project is still under development. If you want to help out, please open an issue to discuss or join us on [Slack](https://draftjs.slack.com/).

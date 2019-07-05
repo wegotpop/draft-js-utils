@@ -5,7 +5,7 @@ import {
   BLOCK_TYPE,
   ENTITY_TYPE,
   INLINE_STYLE,
-} from 'draft-js-utils';
+} from '@wegotpop/draft-js-utils';
 
 import type {ContentState, ContentBlock} from 'draft-js';
 

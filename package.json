@@ -45,5 +45,8 @@
     "singleQuote": true,
     "trailingComma": "all",
     "arrowParens": "always"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

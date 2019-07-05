@@ -15,7 +15,7 @@ This project is still under development. If you want to help out, please open an
 `stateFromElement` takes a DOM node `element` and returns a DraftJS [ContentState](https://facebook.github.io/draft-js/docs/api-reference-content-state.html).
 
 ```js
-import {stateFromElement} from 'draft-js-import-element';
+import {stateFromElement} from '@wegotpop/draft-js-import-element';
 const contentState = stateFromElement(element);
 ```
 

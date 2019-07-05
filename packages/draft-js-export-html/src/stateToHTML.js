@@ -9,7 +9,7 @@ import {
   BLOCK_TYPE,
   ENTITY_TYPE,
   INLINE_STYLE,
-} from 'draft-js-utils';
+} from '@wegotpop/draft-js-utils';
 
 import type {
   ContentState,
@@ -17,7 +17,7 @@ import type {
   Entity,
   EntityInstance,
 } from 'draft-js';
-import type {CharacterMetaList} from 'draft-js-utils';
+import type {CharacterMetaList} from '@wegotpop/draft-js-utils';
 import type {DraftInlineStyle} from 'draft-js/lib/DraftInlineStyle';
 
 type AttrMap = {[key: string]: string};
